@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { getMovieByQuery } from "routes/api";
+// import { useEffect } from "react";
+// import { getMovieByQuery } from "routes/api";
 
 export const MovieSearch = () => {
   
