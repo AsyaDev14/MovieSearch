@@ -1,4 +1,4 @@
-@import-normalize;
+/* @import-normalize; */
 /* bring in normalize.css styles */
 
 body {
@@ -67,4 +67,32 @@ a {
 .main_thumb {
   margin-left: 10px;
   margin-top: 50px;
+}
+
+.movie_layout {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 5px;
+  height: 75px;
+  padding: 0 25px;
+  border: 2px solid #0000008f;
+}
+
+.movie_links {
+  margin-right: 20px;
+}
+
+.cast-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cast-item {
+  display: inline-block;
+  width: calc(100% / 6);
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
 }

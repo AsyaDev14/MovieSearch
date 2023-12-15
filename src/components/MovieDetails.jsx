@@ -10,7 +10,7 @@ export const MovieDetails = () => {
   const releaseDate = new Date(movieInform.release_date).getFullYear();
   const genreName = movieInform.genres && movieInform.genres.map((genre) => genre.name).join(", ");
 
-  console.log("search", movieId);
+  // console.log("search", movieId);
   useEffect(() => {
     getMovieByID(movieId)
       .then((data) => {
@@ -18,11 +18,11 @@ export const MovieDetails = () => {
           setMovieInform(data)
         }
       })
-  }, )
+  },[movieId])
 
   // console.log("inform", movieInform);
 
-  const {poster_path, title, vote_average, overview } = movieInform
+  const { poster_path, title, vote_average, overview } = movieInform
   return (
     <div>
       <div className="main_description">
@@ -36,9 +36,17 @@ export const MovieDetails = () => {
           <p>{genreName}</p>
         </div>
       </div>
-      <div>
-        <Link to="cast">Cast</Link>
-        <Link to="reviews">Reviews</Link>
+
+      <div className="movie_layout">
+        <h3>Additional information</h3>
+        <ul>
+          <li>
+            <Link to="cast" className='movie_links'>Cast</Link>
+          </li>
+          <li>
+            <Link to="reviews" className='movie_links'>Reviews</Link>
+          </li>
+        </ul>
       </div>
       <Outlet />
     </div>
