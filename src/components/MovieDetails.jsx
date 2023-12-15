@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieByID } from "routes/api";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInform, setMovieInform] = useState({});
-
+  const location = useLocation();
   const fullPath = `https://image.tmdb.org/t/p/w500`;
   const releaseDate = new Date(movieInform.release_date).getFullYear();
   const genreName = movieInform.genres && movieInform.genres.map((genre) => genre.name).join(", ");
@@ -25,6 +25,13 @@ export const MovieDetails = () => {
   const { poster_path, title, vote_average, overview } = movieInform
   return (
     <div>
+       <Link to={location.state?.from ?? "/"}>
+        <button
+        type="button">
+        Go back
+      </button>
+      </Link>
+
       <div className="main_description">
         <img src={`${fullPath}${poster_path}`} width='200' alt="." />
         <div className="main_thumb">
