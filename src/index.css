@@ -96,3 +96,7 @@ a {
   padding: 10px;
   box-sizing: border-box;
 }
+
+.form {
+  margin-left: 15px;
+}

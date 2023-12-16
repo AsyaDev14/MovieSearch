@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import { Link, Outlet,  useNavigate,  useParams } from "react-router-dom";
 import { getMovieByID } from "routes/api";
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieInform, setMovieInform] = useState({});
-  const location = useLocation();
+  const { poster_path, title, vote_average, overview } = movieInform;
+
+  // const location = useLocation();
+  const navigate = useNavigate();
+
   const fullPath = `https://image.tmdb.org/t/p/w500`;
   const releaseDate = new Date(movieInform.release_date).getFullYear();
   const genreName = movieInform.genres && movieInform.genres.map((genre) => genre.name).join(", ");
@@ -18,19 +22,15 @@ export const MovieDetails = () => {
           setMovieInform(data)
         }
       })
-  },[movieId])
+  }, [movieId])
 
   // console.log("inform", movieInform);
-
-  const { poster_path, title, vote_average, overview } = movieInform
   return (
     <div>
-       <Link to={location.state?.from ?? "/"}>
-        <button
-        type="button">
-        Go back
-      </button>
-      </Link>
+      {/* switched to home page  */}
+      {/* <Link to={location.state?.from ? location.state.from : "/"}>
+      </Link> */}
+        <button type="button" onClick={()=>navigate(-1)}>Go back</button>
 
       <div className="main_description">
         <img src={`${fullPath}${poster_path}`} width='200' alt="." />

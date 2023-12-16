@@ -1,8 +1,8 @@
 import React from "react";
 import { Home } from "pages/Home";
 import { MovieSearch } from "pages/MovieSearch";
-import { NavLink, Route, Routes } from "react-router-dom";
-import { MovieDetails } from "./MovieDetails";
+import { NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { MovieDetails } from "../pages/MovieDetails";
 import { Cast } from "./Cast";
 import { Review } from "./Reviews";
 
@@ -22,6 +22,8 @@ export const App = () => {
           <Route path="cast" element={<Cast/>} />
           <Route path="reviews" element={<Review/>} />
         </Route>
+        {/* Redirect to home if the route doesn't match any of the above */}
+        <Route path="*" element={<Navigate to='/' />} />
       </Routes>
     </>
   );

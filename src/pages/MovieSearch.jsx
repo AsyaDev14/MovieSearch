@@ -6,42 +6,39 @@ export const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
-  // const location = useLocation();
-  console.log("searchParams", searchParams.get("query"));
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    const value = event.currentTarget.elements.search.value;
-    setLoading(true);
-    // console.log("event", event.currentTarget.elements.search.value)
-    getMovieByQuery(value)
-      .then((res) => {
-        setMovies(res);
-        setLoading(false);
-        // console.log("result movie",res);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      })
+    event.preventDefault();
+    const value = event.currentTarget.elements.search.value.trim();
 
+    if (!value) {
+      return;
+    }
 
     setSearchParams({ query: value });
-  }
+  };
 
   useEffect(() => {
-    if (searchParams.get("query")) {
-      getMovieByQuery(searchParams.get("query"))
+    const query = searchParams.get("query");
+
+    if (query) {
+      setLoading(true);
+
+      getMovieByQuery(query)
         .then((res) => {
           setMovies(res);
-          // console.log("res",res);
+          setLoading(false);
         })
+        .catch((err) => {
+          console.log(err.message);
+          setLoading(false)
+        });
     }
-    // }, )
-  }, [searchParams])
+  }, [searchParams]);
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
           placeholder="Search movie"
@@ -53,16 +50,14 @@ export const MovieSearch = () => {
       </form>
       {loading && <p>Loading...</p>}
       <div>
-        <ul>
-          {movies.map(({ title, id }) => {
-            return (
-              <li key={id}>
-                <Link to={`/movies/${id}`}>
-                  {title}
-                </Link>
-              </li>
-            )
-          })}
+        <ul className="movieList">
+          {movies.map(({ title, id }) => (
+            <li key={id}>
+              <Link to={`/movies/${id}`}>
+                {title}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </>
