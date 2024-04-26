@@ -1,0 +1,26 @@
+.review_container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.review_list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.review_item {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.review_author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review_content {
+  color: #555;
+}

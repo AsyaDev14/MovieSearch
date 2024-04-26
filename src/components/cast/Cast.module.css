@@ -1,13 +1,37 @@
 .cast_list {
-  list-style: none;
   padding: 0;
-  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .cast_item {
-  display: inline-block;
-  width: calc(100% / 6);
-  text-align: center;
+  width: 200px;
+  height: 200px;
+  margin: 10px;
   padding: 10px;
-  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cast_item img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  height: 120px;
+}
+
+.cast_item p {
+  margin: 5px 0;
+}
+
+.cast_item p:last-child {
+  font-weight: bold;
+}
+
+.cast_item span {
+  font-style: italic;
+  color: #555;
 }

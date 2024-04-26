@@ -35,7 +35,6 @@ export const Home = () => {
             </div>
             <div className={css.movieInfo}>
               <h4 className={css.movieTitle}>{movie.title}</h4>
-              {/* <p className={css.movieOverview}>{movie.overview}</p> */}
             </div>
           </Link>
         ))}

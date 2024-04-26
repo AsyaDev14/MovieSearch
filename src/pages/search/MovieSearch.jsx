@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getMovieByQuery } from 'routes/api';
 import { Link, useSearchParams } from 'react-router-dom';
 import css from './MovieSearch.module.css';
+
 export const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,7 +45,7 @@ export const MovieSearch = () => {
       </form>
       {loading && <p>Loading...</p>}
       <div>
-        <ul className="movieList">
+        <ul className={css.movieList}>
           {movies.map(({ title, id }) => (
             <li key={id}>
               <Link to={`/movies/${id}`}>{title}</Link>
