@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { getMovieByQuery } from "routes/api";
-import { Link, useSearchParams } from "react-router-dom";
-
+import React, { useState, useEffect } from 'react';
+import { getMovieByQuery } from 'routes/api';
+import { Link, useSearchParams } from 'react-router-dom';
+import css from './MovieSearch.module.css';
 export const MovieSearch = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     const value = event.currentTarget.elements.search.value.trim();
 
@@ -19,43 +19,35 @@ export const MovieSearch = () => {
   };
 
   useEffect(() => {
-    const query = searchParams.get("query");
+    const query = searchParams.get('query');
 
     if (query) {
       setLoading(true);
 
       getMovieByQuery(query)
-        .then((res) => {
+        .then(res => {
           setMovies(res);
           setLoading(false);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err.message);
-          setLoading(false)
+          setLoading(false);
         });
     }
   }, [searchParams]);
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="form">
-        <input
-          type="text"
-          placeholder="Search movie"
-          name="search"
-        />
-        <button type="submit">
-          Search
-        </button>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <input type="text" placeholder="Search movie" name="search" />
+        <button type="submit">Search</button>
       </form>
       {loading && <p>Loading...</p>}
       <div>
         <ul className="movieList">
           {movies.map(({ title, id }) => (
             <li key={id}>
-              <Link to={`/movies/${id}`}>
-                {title}
-              </Link>
+              <Link to={`/movies/${id}`}>{title}</Link>
             </li>
           ))}
         </ul>

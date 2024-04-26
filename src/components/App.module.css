@@ -1,0 +1,13 @@
+.navigation {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+  height: 40px;
+  padding: 10px 25px;
+  box-shadow: 0 7px 8px 0 rgba(34, 60, 80, 0.2);
+  background-color: #333;
+}
+
+.navigation a {
+  color: white;
+}
