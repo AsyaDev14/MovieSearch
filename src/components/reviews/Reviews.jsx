@@ -13,7 +13,7 @@ export const Review = () => {
         setReviews(res ?? []);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [movieId]);
 
   return (
     <div className={css.review_container}>
